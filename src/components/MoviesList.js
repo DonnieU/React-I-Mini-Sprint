@@ -10,11 +10,15 @@ import React from 'react';
 // Outside the arrow function, export the function MoviesList as a default.
 const MoviesList = (props) => {
   return (
-    <ul>
-      {props.movies.map((movie, i) => {
-        return <li key={movie}>{movie}</li>;
-      })}
-    </ul>
+    <div>
+      <input type="text" value={props.title} onChange={props.changeHandler} />
+      <button onClick={props.addToMovies}>Submit Movie</button>
+      <ul>
+        {props.movies.map((movie, i) => {
+          return <li key={movie}>{movie}</li>;
+        })}
+      </ul>
+    </div>
   );
 };
 

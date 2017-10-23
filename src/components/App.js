@@ -14,21 +14,34 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: [
-        'Forrest Gump',
-        'Blade Runner',
-        'Superbad',
-        'Enemy of the State',
-        'The Matrix'
-      ]
+      movieTitle: '',
+      movies: []
     };
+    this.handleMovieTitle = this.handleMovieTitle.bind(this);
+    this.handleAddMovieToList = this.handleAddMovieToList.bind(this);
+  }
+  handleMovieTitle(event) {
+    this.setState({ movieTitle: event.target.value });
+  }
+  handleAddMovieToList() {
+    let title = this.state.movieTitle;
+    const movies = this.state.movies;
+    movies.push(title);
+    this.setState({ movies, moveTitle: '' });
   }
   // Step 9: Write a render function.
   // Step 10: Inside the render function, write a return statement.
   // Step 11: Inside the return statement, write a selfclosing tag called MoviesList
   // Step 12: Inside the selfclosing tag, give it an attribute called movies, and pass it this.state.movies inside a set of curly bracket.
   render() {
-    return <MoviesList movies={this.state.movies} />;
+    return (
+      <MoviesList
+        changeHandler={this.handleMovieTitle}
+        addToMovies={this.handleAddMovieToList}
+        title={this.state.movieTitle}
+        movies={this.state.movies}
+      />
+    );
   }
 }
 // Step 13: Outside the class, export the App class as a default.
